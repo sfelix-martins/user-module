@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "52bd2132360948f499932bc886d1706f",
+    "content-hash": "e3ecd4a268fc1851f015b08781b44861",
     "packages": [
         {
             "name": "adaojunior/passport-social-grant",
@@ -1028,6 +1028,41 @@
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
             "time": "2017-10-17T12:18:29+00:00"
+        },
+        {
+            "name": "joshbrw/laravel-module-installer",
+            "version": "v0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joshbrw/laravel-module-installer.git",
+                "reference": "571a49c35ab655dccfcd6b1303113e279c7e8dd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joshbrw/laravel-module-installer/zipball/571a49c35ab655dccfcd6b1303113e279c7e8dd3",
+                "reference": "571a49c35ab655dccfcd6b1303113e279c7e8dd3",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1"
+            },
+            "require-dev": {
+                "composer/composer": "^1.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Joshbrw\\LaravelModuleInstaller\\LaravelModuleInstallerPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Joshbrw\\LaravelModuleInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2017-10-09T15:54:50+00:00"
         },
         {
             "name": "laravel/passport",

@@ -1,14 +1,14 @@
 # User Module
 
-The module has an skeleton user flow. 
-It's has routes to register, auth (default and social), password resets and confirmation email.
+This module is a skeleton to handle with users in your API with things generally required.
+It's has endpoints to register, auth (default and social), password resets and confirmation email.
 
-The authentication on API is using [Laravel Passport](https://laravel.com/docs/5.5/passport). 
+The module was made to works with [Laravel Modules](https://github.com/nWidart/laravel-modules) package. A great package to organize your Laravel projects structure in `modules` instead keep your files into your `app` folder.
 
 ## Features
 
 - Register Users
-- OAuth 2 Authentication (Default and Facebook)
+- OAuth 2 Authentication (Default and Facebook) using [Laravel Passport](https://laravel.com/docs/5.5/passport). 
 - Reset Passwords
     - You can resets password on **browser** using routes:
         - GET  : `/password/reset` to show link request form
@@ -41,37 +41,32 @@ More details on [Docs](https://app.swaggerhub.com/apis/sfelix-martins/LaravelRob
 - `Illuminate\Auth\Events\Registered` when user is registered
 - `Illuminate\Auth\Events\PasswordReset` when resets password
 
-
 ## Configuring
 
-- Install package from [joshbrw/laravel-module-installer](https://github.com/joshbrw/laravel-module-installer) to install this module on folder `Modules` correctly
+#### Prerequisites
+
+- A [laravel project](https://laravel.com/docs/5.5/)
+
+#### Installing
+
+- Install the user module on your project:
 
 ```console
-composer require joshbrw/laravel-module-installer
+$ composer require smartins/user-module
 ```
 
-- Install the user module package:
-
-```console
-composer require smartins/user-module
-```
+The module must be on `Modules\User` folder on root of your project
 
 - Publish the module migrations:
 
 ```console
-php artisan module:publish-migration User
+$ php artisan module:publish-migration User
 ```
 
 - And run migrations:
 
 ```console
-php artisan migrate
-```
-
-- Or run the migrations directly on model:
-
-```console
-php artisan module:migrate User
+$ php artisan migrate
 ```
 
 You can see the tables structure on `Modules\User\Database\Migrations`
