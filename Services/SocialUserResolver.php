@@ -61,23 +61,23 @@ class SocialUserResolver implements SocialUserResolverInterface
 
         $facebookUser = $this->users->findByFacebookId($socialUser->getId());
 
-        if (! $facebookUser) {
-            $defaultUser = $this->users->findByEmail($socialUser->getEmail());
-
-            if (! $defaultUser) {
-                return $this->register([
-                    'name'          => $socialUser->getName(),
-                    'email'         => $socialUser->getEmail(),
-                    'password'      => sha1($socialUser->getId().date('d-m-Y h:i:s')),
-                    'facebook_id'   => $socialUser->getId(),
-                ]);
-            } else {
-                return $this->users->update($defaultUser->id, [
-                    'facebook_id' => $socialUser->getId(),
-                ]);
-            }
-        } else {
+        if ($facebookUser) {
             return $facebookUser;
         }
+
+        $defaultUser = $this->users->findByEmail($socialUser->getEmail());
+
+        if (! $defaultUser) {
+            return $this->register([
+                'name'          => $socialUser->getName(),
+                'email'         => $socialUser->getEmail(),
+                'password'      => sha1($socialUser->getId().date('d-m-Y h:i:s')),
+                'facebook_id'   => $socialUser->getId(),
+            ]);
+        }
+
+        return $this->users->update($defaultUser->id, [
+            'facebook_id' => $socialUser->getId(),
+        ]);
     }
 }
