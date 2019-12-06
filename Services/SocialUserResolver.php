@@ -23,11 +23,11 @@ class SocialUserResolver implements SocialUserResolverInterface
 
     use RegistersUsers;
 
-    protected $users;
+    protected $userRepository;
 
-    public function __construct(UserRepository $users)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->users = $users;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -59,13 +59,13 @@ class SocialUserResolver implements SocialUserResolverInterface
     {
         $socialUser = Socialite::driver('facebook')->userFromToken($accessToken);
 
-        $facebookUser = $this->users->findByFacebookId($socialUser->getId());
+        $facebookUser = $this->userRepository->findByFacebookId($socialUser->getId());
 
         if ($facebookUser) {
             return $facebookUser;
         }
 
-        $defaultUser = $this->users->findByEmail($socialUser->getEmail());
+        $defaultUser = $this->userRepository->findByEmail($socialUser->getEmail());
 
         if (! $defaultUser) {
             return $this->register([
@@ -76,7 +76,7 @@ class SocialUserResolver implements SocialUserResolverInterface
             ]);
         }
 
-        return $this->users->update($defaultUser->id, [
+        return $this->userRepository->update($defaultUser->id, [
             'facebook_id' => $socialUser->getId(),
         ]);
     }
